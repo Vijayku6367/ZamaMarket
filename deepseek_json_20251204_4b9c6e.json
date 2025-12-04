@@ -1,0 +1,27 @@
+{
+  "name": "darkmarket-fhe",
+  "version": "1.0.0",
+  "description": "Fully Homomorphic Encrypted Marketplace",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx http-server frontend -p 3000 -c-1",
+    "build": "echo 'Building DarkMarket FHE...'",
+    "test": "hardhat test",
+    "deploy": "hardhat run scripts/deploy.js --network localhost",
+    "demo": "node scripts/demo-flow.js"
+  },
+  "dependencies": {
+    "@zama/fhevm": "^0.1.0",
+    "@openzeppelin/contracts": "^5.0.0",
+    "ethers": "^6.8.0",
+    "hardhat": "^2.19.0",
+    "three": "^0.162.0",
+    "gsap": "^3.12.4"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "chai": "^4.3.0",
+    "mocha": "^10.2.0",
+    "@types/node": "^20.10.0"
+  }
+}
