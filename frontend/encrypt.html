@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption Tools | DarkMarket FHE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+    <div class="background-effects">
+        <canvas id="particle-canvas"></canvas>
+    </div>
+
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-user-secret"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-main">DarkMarket</span>
+                    <span class="logo-sub">FHE</span>
+                </div>
+            </div>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="marketplace.html" class="nav-link">
+                    <i class="fas fa-store"></i>
+                    <span>Marketplace</span>
+                </a>
+                <a href="encrypt.html" class="nav-link active">
+                    <i class="fas fa-lock"></i>
+                    <span>Encrypt</span>
+                </a>
+                <a href="mybids.html" class="nav-link">
+                    <i class="fas fa-gavel"></i>
+                    <span>My Bids</span>
+                </a>
+                <a href="docs.html" class="nav-link">
+                    <i class="fas fa-book"></i>
+                    <span>Docs</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="btn-connect-wallet">
+                    <i class="fas fa-wallet"></i>
+                    <span>Connect Wallet</span>
+                    <div class="connection-indicator"></div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Encryption Header -->
+    <section class="encryption-header">
+        <div class="container">
+            <div class="header-content">
+                <h1>FHE Encryption Tools</h1>
+                <p>Encrypt your data before submitting to blockchain. All processing happens locally on your device.</p>
+                <div class="security-banner">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>All encryption happens client-side. Your keys never leave your browser.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Encryption Interface -->
+    <section class="encryption-interface">
+        <div class="container">
+            <div class="interface-grid">
+                <!-- Key Management -->
+                <div class="panel key-management">
+                    <div class="panel-header">
+                        <h2><i class="fas fa-key"></i> Key Management</h2>
+                    </div>
+                    <div class="panel-content">
+                        <div class="key-status">
+                            <div class="status-indicator active"></div>
+                            <span>FHE Keys Generated</span>
+                        </div>
+                        
+                        <div class="key-display">
+                            <div class="key-item">
+                                <label>Public Key</label>
+                                <div class="key-value">
+                                    <code>0x8f3a186c8f25591e4b2c8f2d9a1b7c3d8e4f2a6c...</code>
+                                    <button class="copy-btn">
+                                        <i class="far fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="key-item">
+                                <label>Private Key</label>
+                                <div class="key-value secure">
+                                    <i class="fas fa-eye-slash"></i>
+                                    <span>••••••••••••••••••••••••••••••••</span>
+                                    <button class="show-btn">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="key-actions">
+                            <button class="btn-outline">
+                                <i class="fas fa-redo"></i>
+                                Regenerate Keys
+                            </button>
+                            <button class="btn-primary">
+                                <i class="fas fa-download"></i>
+                                Export Keys
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Encryption Tool -->
+                <div class="panel encryption-tool">
+                    <div class="panel-header">
+                        <h2><i class="fas fa-lock"></i> Encrypt Value</h2>
+                    </div>
+                    <div class="panel-content">
+                        <div class="input-group">
+                            <label for="plaintext-input">
+                                <i class="fas fa-pencil-alt"></i>
+                                Plaintext Value
+                            </label>
+                            <div class="input-with-unit">
+                                <input 
+                                    type="number" 
+                                    id="plaintext-input" 
+                                    placeholder="0.1" 
+                                    step="0.001"
+                                    value="1.5"
+                                >
+                                <span class="input-unit">ETH</span>
+                            </div>
+                        </div>
+                        
+                        <div class="encryption-visual">
+                            <div class="visual-step">
+                                <div class="step-icon">
+                                    <i class="fas fa-keyboard"></i>
+                                </div>
+                                <div class="step-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                                <div class="step-icon encrypting">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                                <div class="step-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                                <div class="step-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                            </div>
+                            <div class="visual-labels">
+                                <span>Input</span>
+                                <span>Encrypting</span>
+                                <span>Ciphertext</span>
+                            </div>
+                        </div>
+                        
+                        <button class="btn-primary btn-encrypt">
+                            <i class="fas fa-lock"></i>
+                            Encrypt Value
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Results Panel -->
+                <div class="panel results-panel">
+                    <div class="panel-header">
+                        <h2><i class="fas fa-code"></i> Encrypted Result</h2>
+                    </div>
+                    <div class="panel-content">
+                        <div class="result-display">
+                            <div class="result-header">
+                                <span class="result-label">Ciphertext Output</span>
+                                <div class="result-actions">
+                                    <button class="btn-icon copy-result">
+                                        <i class="far fa-copy"></i>
+                                    </button>
+                                    <button class="btn-icon download-result">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="ciphertext-output">
+                                <pre id="ciphertext-output">0x3a7d186c8f25591e4b2c8f2d9a1b7c3d8e4f2a6c
+0x8b4e186c8f25591e4b2c8f2d9a1b7c3d8e4d9a1b
+0xf2c5186c8f25591e4b2c8f2d9a1b7c3d8e4b7e3c
+0x9e8a186c8f25591e4b2c8f2d9a1b7c3d8e4c4d2d</pre>
+                            </div>
+                            
+                            <div class="result-info">
+                                <div class="info-item">
+                                    <span class="info-label">Size:</span>
+                                    <span class="info-value">256 bytes</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Algorithm:</span>
+                                    <span class="info-value">TFHE</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Timestamp:</span>
+                                    <span class="info-value">Just now</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Decryption Tool -->
+                <div class="panel decryption-tool">
+                    <div class="panel-header">
+                        <h2><i class="fas fa-unlock"></i> Decrypt Value</h2>
+                    </div>
+                    <div class="panel-content">
+                        <div class="input-group">
+                            <label for="ciphertext-input">
+                                <i class="fas fa-code"></i>
+                                Ciphertext Input
+                            </label>
+                            <textarea 
+                                id="ciphertext-input" 
+                                placeholder="Paste ciphertext here..."
+                                rows="4"
+                            >0x3a7d186c8f25591e4b2c8f2d9a1b7c3d8e4f2a6c</textarea>
+                        </div>
+                        
+                        <div class="decryption-status">
+                            <div class="status-indicator idle"></div>
+                            <span>Ready to decrypt</span>
+                        </div>
+                        
+                        <button class="btn-primary btn-decrypt">
+                            <i class="fas fa-unlock"></i>
+                            Decrypt Value
+                        </button>
+                        
+                        <div class="decryption-result">
+                            <div class="result-label">Decrypted Value:</div>
+                            <div class="decrypted-value">
+                                <i class="fas fa-check-circle"></i>
+                                <span>1.5 ETH</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Operations Panel -->
+                <div class="panel operations-panel">
+                    <div class="panel-header">
+                        <h2><i class="fas fa-calculator"></i> Encrypted Operations</h2>
+                    </div>
+                    <div class="panel-content">
+                        <div class="operation-buttons">
+                            <button class="operation-btn">
+                                <i class="fas fa-plus"></i>
+                                Add Encrypted
+                            </button>
+                            <button class="operation-btn">
+                                <i class="fas fa-minus"></i>
+                                Subtract Encrypted
+                            </button>
+                            <button class="operation-btn">
+                                <i class="fas fa-times"></i>
+                                Multiply Encrypted
+                            </button>
+                            <button class="operation-btn">
+                                <i class="fas fa-equals"></i>
+                                Compare Encrypted
+                            </button>
+                        </div>
+                        
+                        <div class="operation-inputs">
+                            <div class="input-group">
+                                <label>Value A</label>
+                                <input type="text" placeholder="Ciphertext A">
+                            </div>
+                            <div class="input-group">
+                                <label>Value B</label>
+                                <input type="text" placeholder="Ciphertext B">
+                            </div>
+                        </div>
+                        
+                        <button class="btn-primary btn-execute">
+                            <i class="fas fa-play"></i>
+                            Execute Operation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutorial Section -->
+    <section class="tutorial-section">
+        <div class="container">
+            <h2>How to Use Encryption Tools</h2>
+            <div class="tutorial-steps">
+                <div class="tutorial-step">
+                    <div class="step-number">1</div>
+                    <h3>Generate Your Keys</h3>
+                    <p>First, generate your FHE key pair. Your private key stays on your device.</p>
+                </div>
+                <div class="tutorial-step">
+                    <div class="step-number">2</div>
+                    <h3>Encrypt Your Data</h3>
+                    <p>Enter your bid or price and encrypt it using your public key.</p>
+                </div>
+                <div class="tutorial-step">
+                    <div class="step-number">3</div>
+                    <h3>Submit to Blockchain</h3>
+                    <p>Copy the ciphertext and submit it to the DarkMarket smart contract.</p>
+                </div>
+                <div class="tutorial-step">
+                    <div class="step-number">4</div>
+                    <h3>Decrypt Results</h3>
+                    <p>When needed, use your private key to decrypt results locally.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <!-- Footer content -->
+    </footer>
+
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // Encryption page specific functionality
+        document.querySelector('.btn-encrypt').addEventListener('click', function() {
+            const input = document.getElementById('plaintext-input').value;
+            if (!input) return;
+            
+            // Simulate encryption
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Encrypting...';
+            this.disabled = true;
+            
+            setTimeout(() => {
+                const ciphertext = `0x${Math.random().toString(16).slice(2, 66)}`;
+                document.getElementById('ciphertext-output').textContent = ciphertext;
+                this.innerHTML = '<i class="fas fa-lock"></i> Encrypt Value';
+                this.disabled = false;
+                
+                // Show success animation
+                const resultPanel = document.querySelector('.results-panel');
+                resultPanel.style.animation = 'pulse 0.5s';
+                setTimeout(() => {
+                    resultPanel.style.animation = '';
+                }, 500);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
