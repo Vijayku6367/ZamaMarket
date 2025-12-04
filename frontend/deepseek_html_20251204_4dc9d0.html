@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DarkMarket FHE | Encrypted Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/animations.css">
+    <link rel="stylesheet" href="./assets/css/themes.css">
+    <link rel="stylesheet" href="./frontend/style.css">
+</head>
+<body>
+    <!-- Encrypted Background Animation -->
+    <div class="encrypted-bg">
+        <canvas id="particleCanvas"></canvas>
+        <div class="cipher-text-stream"></div>
+    </div>
+
+    <!-- Navigation with Morphing Animation -->
+    <nav class="glass-nav" id="mainNav">
+        <div class="nav-container">
+            <div class="logo-container">
+                <div class="logo-hologram">
+                    <i class="fas fa-shield-alt"></i>
+                    <span class="logo-text">DarkMarket<span class="fhe-badge">FHE</span></span>
+                </div>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#home" class="nav-link" data-text="Home">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#marketplace" class="nav-link" data-text="Marketplace">
+                    <i class="fas fa-store"></i>
+                    <span>Marketplace</span>
+                </a>
+                <a href="#encrypt" class="nav-link" data-text="Encrypt">
+                    <i class="fas fa-lock"></i>
+                    <span>Encrypt</span>
+                </a>
+                <a href="#bids" class="nav-link" data-text="My Bids">
+                    <i class="fas fa-gavel"></i>
+                    <span>My Bids</span>
+                </a>
+                <a href="#docs" class="nav-link" data-text="Docs">
+                    <i class="fas fa-book"></i>
+                    <span>Docs</span>
+                </a>
+            </div>
+
+            <div class="wallet-section">
+                <button class="connect-wallet-btn" id="connectWallet">
+                    <i class="fas fa-wallet"></i>
+                    <span class="btn-text">Connect Wallet</span>
+                    <div class="connection-pulse"></div>
+                </button>
+                <div class="wallet-info" id="walletInfo" style="display: none;">
+                    <div class="wallet-address" id="walletAddress"></div>
+                    <div class="balance">Balance: <span id="ethBalance">0</span> ETH</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="nav-indicator"></div>
+    </nav>
+
+    <!-- Main Content with Parallax Sections -->
+    <main class="parallax-container">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <div class="encryption-badge">
+                    <i class="fas fa-user-secret"></i>
+                    <span>Fully Homomorphic</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    <span class="title-line">Trade Privately</span>
+                    <span class="title-line">with <span class="encrypted-text">Encrypted</span> Intelligence</span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    The world's first completely private marketplace where bids, prices, and trades remain encrypted end-to-end.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-value encrypted-number" data-value="145">0</div>
+                        <div class="stat-label">Active Listings</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value encrypted-number" data-value="89">0</div>
+                        <div class="stat-label">Encrypted Bids</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value encrypted-number" data-value="42">0</div>
+                        <div class="stat-label">Successful Trades</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="encryption-visual">
+                    <div class="fhe-sphere">
+                        <div class="inner-sphere"></div>
+                        <div class="encryption-ring"></div>
+                        <div class="data-point" style="--i:0"></div>
+                        <div class="data-point" style="--i:1"></div>
+                        <div class="data-point" style="--i:2"></div>
+                        <div class="data-point" style="--i:3"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Marketplace Section -->
+        <section id="marketplace" class="marketplace-section">
+            <div class="section-header">
+                <h2><span class="section-icon">⚡</span> Encrypted Marketplace</h2>
+                <p>Browse listings with prices encrypted using FHE</p>
+            </div>
+            
+            <div class="marketplace-controls">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search encrypted listings..." class="encrypted-input">
+                </div>
+                <button class="create-listing-btn">
+                    <i class="fas fa-plus-circle"></i>
+                    Create Encrypted Listing
+                </button>
+            </div>
+            
+            <div class="product-grid" id="productGrid">
+                <!-- Product cards will be dynamically generated -->
+            </div>
+        </section>
+
+        <!-- Encryption Interface -->
+        <section id="encrypt" class="encryption-section">
+            <div class="section-header">
+                <h2><span class="section-icon">🔐</span> FHE Encryption Tools</h2>
+                <p>Encrypt your data before submitting to blockchain</p>
+            </div>
+            
+            <div class="encryption-interface">
+                <div class="encryption-panel">
+                    <div class="panel-header">
+                        <h3>Encrypt Value</h3>
+                        <div class="encryption-status">
+                            <div class="status-indicator"></div>
+                            <span>FHE Secure</span>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="plainValue">Plaintext Value (ETH)</label>
+                        <div class="input-with-action">
+                            <input type="number" id="plainValue" placeholder="0.1" step="0.001">
+                            <button class="encrypt-btn" id="encryptBtn">
+                                <i class="fas fa-lock"></i>
+                                Encrypt
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="output-group">
+                        <label for="encryptedValue">Encrypted Ciphertext</label>
+                        <div class="ciphertext-display">
+                            <div class="ciphertext-content" id="encryptedValue">
+                                <span class="placeholder">Encrypted value will appear here...</span>
+                            </div>
+                            <button class="copy-btn" id="copyCiphertext">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="encryption-visualization">
+                        <div class="visualization-bar">
+                            <div class="plain-bar"></div>
+                            <div class="encrypted-bar"></div>
+                        </div>
+                        <div class="visualization-labels">
+                            <span>Plaintext</span>
+                            <span>Encrypted</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bid-panel">
+                    <div class="panel-header">
+                        <h3>Submit Encrypted Bid</h3>
+                    </div>
+                    
+                    <div class="selected-product">
+                        <div class="product-preview">
+                            <div class="product-image"></div>
+                            <div class="product-info">
+                                <h4>Product #001</h4>
+                                <p>Price: <span class="encrypted-price">🔒 Encrypted</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bid-input">
+                        <label for="bidAmount">Your Encrypted Bid</label>
+                        <div class="ciphertext-input">
+                            <textarea id="bidAmount" placeholder="Paste encrypted ciphertext here..." rows="3"></textarea>
+                            <div class="input-actions">
+                                <button class="btn-secondary" id="clearBid">
+                                    <i class="fas fa-times"></i>
+                                    Clear
+                                </button>
+                                <button class="btn-primary" id="submitBid">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Submit Encrypted Bid
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Bids Section -->
+        <section id="bids" class="bids-section">
+            <div class="section-header">
+                <h2><span class="section-icon">📊</span> Live Encrypted Bids</h2>
+                <p>Watch encrypted bids in real-time</p>
+            </div>
+            
+            <div class="bids-container">
+                <div class="bid-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="bid-header">
+                                <span class="bidder">0x8f3a...c4b2</span>
+                                <span class="bid-time">2 min ago</span>
+                            </div>
+                            <div class="bid-value">
+                                <i class="fas fa-lock"></i>
+                                Encrypted Bid Submitted
+                            </div>
+                            <div class="bid-status encrypted">🔒 Processing</div>
+                        </div>
+                    </div>
+                    <!-- More timeline items -->
+                </div>
+                
+                <div class="winner-announcement">
+                    <div class="winner-card">
+                        <div class="winner-header">
+                            <i class="fas fa-crown"></i>
+                            <h3>Encrypted Winner</h3>
+                        </div>
+                        <div class="winner-info">
+                            <div class="winner-address encrypted-text">🔒 0x0000...0000</div>
+                            <div class="winning-bid">
+                                <span>Winning Bid:</span>
+                                <span class="encrypted-amount">🔒 Encrypted</span>
+                            </div>
+                            <button class="reveal-winner-btn" id="revealWinner">
+                                <i class="fas fa-user-secret"></i>
+                                Decrypt Winner
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">DarkMarket<span class="fhe">FHE</span></div>
+                <p class="tagline">End-to-end encrypted marketplace powered by Fully Homomorphic Encryption</p>
+            </div>
+            
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Technology</h4>
+                    <a href="#">FHE Explained</a>
+                    <a href="#">Zama Integration</a>
+                    <a href="#">Smart Contracts</a>
+                </div>
+                
+                <div class="link-group">
+                    <h4>Resources</h4>
+                    <a href="#">Documentation</a>
+                    <a href="#">API Reference</a>
+                    <a href="#">GitHub</a>
+                </div>
+                
+                <div class="link-group">
+                    <h4>Community</h4>
+                    <a href="#">Discord</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Telegram</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2024 DarkMarket FHE. All transactions encrypted. All rights reserved.</p>
+            <div class="security-badge">
+                <i class="fas fa-shield-alt"></i>
+                <span>100% Encrypted • Zero Knowledge</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./assets/js/gsap.min.js"></script>
+    <script src="./assets/js/three.min.js"></script>
+    <script src="./frontend/lib/parallax.js"></script>
+    <script src="./frontend/lib/smoothScroll.js"></script>
+    <script src="./frontend/lib/particleEffect.js"></script>
+    <script src="./frontend/animations.js"></script>
+    <script src="./frontend/components/ProductCard.js"></script>
+    <script src="./frontend/components/BidPanel.js"></script>
+    <script src="./frontend/components/EncryptedViewer.js"></script>
+    <script src="./frontend/app.js"></script>
+</body>
+</html>
